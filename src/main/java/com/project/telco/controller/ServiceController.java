@@ -7,13 +7,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-// @Controller
-// @RequestMapping("/api")
-// public class ServiceController {
-//     private ServiceController serviceController;
+import com.project.telco.repository.JdbcIngredientRepository;
 
-// //    @RequestMapping(value="/users", method=RequestMethod.GET)
-// //    public String addUser(Model model) {
+@Controller
+@RequestMapping("/api")
+public class ServiceController {
+    private ServiceController serviceController;
 
-// //    }
-// // }
+
+   @RequestMapping(value="/users", method=RequestMethod.GET)
+   public String addUser(Model model) {
+        JdbcIngredientRepository repo = JdbcIngredientRepository(); 
+        Iterable<User> users = 
+   }
+}
