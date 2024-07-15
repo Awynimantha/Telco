@@ -10,21 +10,21 @@ import org.springframework.stereotype.Repository;
 import com.project.telco.model.User;
 
 @Repository
-public class JdbcIngredientRepository {
+public class JdbcUserRepository implements UserRepository{
     private JdbcTemplate jdbcTemplate;
 
-    @Autowired
-    public JdbcIngredientRepository(JdbcTemplate jdbcTemplate) {
+    public JdbcUserRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
 
     }
 
-    public  Iterable<User> findAll() {
+    public Iterable<User> findAll() {
         return jdbcTemplate.query(
-            "select id, name, phonenumber, age  from user", this::mapRowToUser
-        );
-    }
-    
+            "select id, name, phonenumber, age from \"User\"", this::mapRowToUser
+    );
+}
+
+
     private User mapRowToUser(ResultSet row, int rowNum) 
         throws SQLException {
             return new User(
