@@ -27,12 +27,19 @@ public class JdbcUserRepository implements UserRepository{
 
     private User mapRowToUser(ResultSet row, int rowNum) 
         throws SQLException {
-            return new User(
-                row.getString("id"), 
-                row.getString("phonenumber"), 
-                row.getString("name"),
-                row.getInt("age")
+            String id = row.getString("id");
+            String phoneNumber = row.getString("phonenumber");
+            String name = row.getString("name");
+            int age = row.getInt("age");
 
-            );
+            //initializing
+            User user = new User();
+            user.setId(id);
+            user.setName(name);
+            user.setPhonenumber(phoneNumber);
+            user.setAge(age);
+            return user;
+            
+
         }
 }
