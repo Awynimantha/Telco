@@ -1,6 +1,5 @@
 package com.project.telco.model;
 
-import javafx.print.PrintColor;
 import lombok.Data;
 
 @Data

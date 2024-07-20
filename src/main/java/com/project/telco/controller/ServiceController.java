@@ -14,14 +14,16 @@ import com.project.telco.repository.UserRepository;
 @Controller
 @RequestMapping("/api")
 //Maintain variable in the session
-@SessionAttributes("user")
+// @SessionAttributes("user")
 public class ServiceController {
     private UserRepository userRepository;
-
-    // @ModelAttribute(name = "user")
-    // public User get() {
-    //     return new User();
-    // }
+    //make sure user is in the session
+    @ModelAttribute(name = "user")
+    public User get() {
+        User newUser = new User();
+        newUser.setAge(34);
+        return newUser;
+    }
 
 
     public ServiceController(UserRepository userRepository){
@@ -31,7 +33,7 @@ public class ServiceController {
    @RequestMapping(value="/users", method=RequestMethod.GET)
    public void getUsers(Model model) {
        Iterable<User> user = userRepository.findAll();
-       model.addAttribute("user", user);
+       //model.addAttribute("user", user);
        System.out.println(model);
         System.out.println(user );
    }
