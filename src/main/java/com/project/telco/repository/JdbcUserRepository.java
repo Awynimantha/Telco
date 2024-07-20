@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreatorFactory;
 import org.springframework.stereotype.Repository;
 
 import com.project.telco.model.User;
@@ -26,8 +27,11 @@ public class JdbcUserRepository implements UserRepository{
 
     @Override
     public User save(User user) {
-        jdbcTemplate.update("insert into  \"User\" (id, name, phonenumber, age) values(?,?,?,?)", 
-            user.getId(), user.getName(), user.getPhonenumber(), user.getAge());
+        PreparedStatementCreatorFactory pscf = 
+            new PreparedStatementCreatorFactory(
+                "insert into Taco_Order " 
+                + "()" 
+            );
         return user;
     }
 
@@ -41,7 +45,6 @@ public class JdbcUserRepository implements UserRepository{
 
             //initializing
             User user = new User();
-            user.setId(id);
             user.setName(name);
             user.setPhonenumber(phoneNumber);
             user.setAge(age);
