@@ -1,10 +1,11 @@
 package com.project.telco.repository;
 
-import org.springframework.boot.autoconfigure.batch.BatchProperties.Jdbc;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import com.project.telco.model.User;
 
-public interface UserRepository {
-    Iterable<User> findAll();       
-    User save(User user);
+@Repository
+public interface UserRepository extends CrudRepository<User, Long>{
+ 
 }

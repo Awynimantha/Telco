@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 //Maintain variable in the session
 @SessionAttributes("user")
 public class ServiceController {
+
     private UserRepository userRepository;
     //make sure user is in the session
     @ModelAttribute(name = "user")
