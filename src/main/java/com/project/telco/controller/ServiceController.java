@@ -37,11 +37,12 @@ public class ServiceController {
     }
 
    @RequestMapping(value="/users", method=RequestMethod.GET)
-   public void getUsers(Model model) {
+   public Iterable<User> getUsers(Model model) {
        Iterable<User> user = userRepository.findAll();
        //model.addAttribute("user", user);
        System.out.println(model);
         System.out.println(user );
+        return user;
    }
 
    @RequestMapping(value  ="/addUser", method=RequestMethod.POST)
@@ -50,9 +51,8 @@ public class ServiceController {
             System.out.println("failed");
         }
 
-        System.out.println(user);
-      //userRepository.save(user);
-        //sessionStatus.setComplete();
+        userRepository.save(user);
+        sessionStatus.setComplete();
    }
    
    //Model is maintained throughout the session

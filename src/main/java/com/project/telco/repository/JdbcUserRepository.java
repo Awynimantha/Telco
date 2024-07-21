@@ -37,7 +37,7 @@ public class JdbcUserRepository implements UserRepository{
     public User save(User user) {
         PreparedStatementCreatorFactory pscf = 
             new PreparedStatementCreatorFactory(
-                "insert into Taco_Order " 
+                "insert into \"User\" " 
                 + "(name, phonenumber, age) values(?, ?, ? )", 
                 Types.VARCHAR, Types.VARCHAR, Types.VARCHAR
             );
