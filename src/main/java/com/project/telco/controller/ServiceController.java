@@ -52,6 +52,7 @@ public class ServiceController {
 
    @RequestMapping(value  ="/addUser", method=RequestMethod.POST)
    public void setUser(@RequestBody User user, Errors errors, SessionStatus sessionStatus) {
+        System.out.println(user);
         if(errors.hasErrors()) {
             System.out.println("failed");
         }

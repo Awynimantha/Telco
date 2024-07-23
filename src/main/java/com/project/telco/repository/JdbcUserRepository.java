@@ -32,12 +32,15 @@ public class JdbcUserRepository implements UserRepository {
 
     }
 
+    @Override
     public Iterable<User> findAll() {
-        return null;
+        return jdbcTemplate.query(
+        "select id, name, age, phonenumber from \"User\"", this::mapRowToUser);
     }
 
     @Override
     public User save(User user) {
+        System.out.println("Executing the function");
         PreparedStatementCreatorFactory pscf = 
             new PreparedStatementCreatorFactory(
                 "insert into \"User\" " 
