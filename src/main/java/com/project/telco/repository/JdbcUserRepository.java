@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.Arrays;
+import java.util.Optional;
 
 import org.hibernate.sql.exec.spi.JdbcOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +14,15 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.PreparedStatementCreatorFactory;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import com.project.telco.model.User;
 
-@Repository
-public class JdbcUserRepository implements UserRepository{
+@Service
+public class JdbcUserRepository implements UserRepository {
+    @Autowired
+
+
     private JdbcTemplate jdbcTemplate;
     private JdbcOperations jdbcOperations;
 
@@ -28,9 +33,7 @@ public class JdbcUserRepository implements UserRepository{
     }
 
     public Iterable<User> findAll() {
-        return jdbcTemplate.query(
-            "select id, name, phonenumber, age from \"User\"", this::mapRowToUser
-        );
+        return null;
     }
 
     @Override
@@ -74,4 +77,6 @@ public class JdbcUserRepository implements UserRepository{
             
 
         }
+
+ 
 }

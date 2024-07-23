@@ -1,5 +1,6 @@
 package com.project.telco.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.project.telco.model.User;
+import com.project.telco.repository.JdbcUserRepository;
 import com.project.telco.repository.UserRepository;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -24,6 +26,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ServiceController {
 
     private UserRepository userRepository;
+    
+  
+
     //make sure user is in the session
     @ModelAttribute(name = "user")
     public User get() {
@@ -31,7 +36,6 @@ public class ServiceController {
         newUser.setAge(34);
         return newUser;
     }
-
 
     public ServiceController(UserRepository userRepository){
         this.userRepository = userRepository;

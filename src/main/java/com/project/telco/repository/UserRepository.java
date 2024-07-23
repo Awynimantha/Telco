@@ -5,7 +5,8 @@ import org.springframework.stereotype.Repository;
 
 import com.project.telco.model.User;
 
-@Repository
-public interface UserRepository extends CrudRepository<User, Long>{
- 
+public interface UserRepository {
+   public Iterable<User> findAll (); 
+   public User save(User user);
+   
 }

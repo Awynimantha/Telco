@@ -1,13 +1,13 @@
 package com.project.telco.model;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
-@Table
-public class User {
-    @Id
+public class User{
     private long userId;
     private String phonenumber;
     private String name;
