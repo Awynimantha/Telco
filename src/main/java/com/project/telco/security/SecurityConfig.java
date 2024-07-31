@@ -28,6 +28,12 @@ public class SecurityConfig {
             "User1", encoder.encode("password"),
             Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"))
         ));
+        usersList.add(new User(
+            "newUser",  encoder.encode("newly"),
+            Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"))
+        ));
+        
+        
         return new InMemoryUserDetailsManager(usersList);
     }
 }
