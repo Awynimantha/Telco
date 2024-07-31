@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.project.telco.model.User;
+import com.project.telco.model.Client;
 import com.project.telco.repository.UserRepository;
 
 
@@ -18,16 +18,15 @@ import com.project.telco.repository.UserRepository;
 @Controller
 @RequestMapping("/api")
 //Maintain variable in the session
-@SessionAttributes("user")
+@SessionAttributes("Client")
 public class ServiceController {
 
     private UserRepository userRepository;
     
-    //make sure user is in the session
-    @ModelAttribute(name = "user")
-    public User get() {
-        User newUser = new User();
-        newUser.setAge(34);
+    //make sure Client is in the session
+    @ModelAttribute(name = "Client")
+    public Client get() {
+        Client newUser = new Client();
         return newUser;
     }
 
@@ -36,22 +35,22 @@ public class ServiceController {
     }
 
    @RequestMapping(value="/users", method=RequestMethod.GET)
-   public Iterable<User> getUsers(Model model) {
-       Iterable<User> user = userRepository.findAll();
-       //model.addAttribute("user", user);
+   public Iterable<Client> getUsers(Model model) {
+       Iterable<Client> Client = userRepository.findAll();
+       //model.addAttribute("Client", Client);
        System.out.println(model);
-        System.out.println(user );
-        return user;
+        System.out.println(Client );
+        return Client;
    }
 
    @RequestMapping(value  ="/addUser", method=RequestMethod.POST)
-   public void setUser(@RequestBody User user, Errors errors, SessionStatus sessionStatus) {
-        System.out.println(user);
+   public void setUser(@RequestBody Client Client, Errors errors, SessionStatus sessionStatus) {
+        System.out.println(Client);
         if(errors.hasErrors()) {
             System.out.println("failed");
         }
 
-        userRepository.save(user);
+        userRepository.save(Client);
         sessionStatus.setComplete();
    }
    

@@ -1,10 +1,12 @@
 package com.project.telco.repository;
 
 
-import com.project.telco.model.User;
+import org.springframework.data.repository.CrudRepository;
 
-public interface UserRepository {
-   public Iterable<User> findAll (); 
-   public User save(User user);
+import com.project.telco.model.Client;
+
+public interface UserRepository extends CrudRepository<Client, Long>{
+   public Iterable<Client> findAll (); 
+   public Client save(Client Client);
    
 }
