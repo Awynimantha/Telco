@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,6 +14,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AnyRequestMatcher;
 
 @Configuration
 public class SecurityConfig {
@@ -36,4 +39,16 @@ public class SecurityConfig {
         
         return new InMemoryUserDetailsManager(usersList);
     }
+    
+    @Bean
+    public SecurityFilterChain web(HttpSecurity http) throws Exception {
+        http.authorizeHttpRequests((authorize) -> authorize
+            .requestMatchers("/register").permitAll()
+            .anyRequest().authenticated());
+            // ...
+
+        return http.build();
+    }
+
+
 }
