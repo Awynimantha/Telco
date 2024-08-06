@@ -43,12 +43,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain web(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((authorize) -> authorize
-            .requestMatchers("/register").permitAll()
-            .anyRequest().authenticated());
+            .anyRequest().permitAll());
             // ...
 
         return http.build();
     }
+
 
 
 }

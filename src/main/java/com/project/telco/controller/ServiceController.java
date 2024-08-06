@@ -1,5 +1,7 @@
 package com.project.telco.controller;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.project.telco.model.Client;
 import com.project.telco.repository.UserRepository;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -19,8 +23,12 @@ import com.project.telco.repository.UserRepository;
 @RequestMapping("/api")
 //Maintain variable in the session
 @SessionAttributes("Client")
+@Configuration
+@ConfigurationProperties(prefix = "contr")
+
 public class ServiceController {
 
+    public String string;
     private UserRepository userRepository;
     
     //make sure Client is in the session
@@ -59,6 +67,13 @@ public class ServiceController {
    public void getModel(Model model) {
         System.out.println(model);
    }
+
+   @RequestMapping(value = "/test", method=RequestMethod.GET)
+   public void test() {
+       System.out.print("----------------- "+ string);
+    
+   }
+   
    
 
 
