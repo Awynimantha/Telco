@@ -1,0 +1,17 @@
+spring:
+  sql:
+    init:
+      schema-locations:  classpath:schema.sql
+      data-locations: classpath:data.sql
+  datasource:
+    url: jdbc:postgresql://localhost:5432/telco
+    username: telco
+    password: 1234
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+contr:
+  string: "here is the string"
