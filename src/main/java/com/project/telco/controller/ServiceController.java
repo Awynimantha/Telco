@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.project.telco.config.ConfigProperties;
 import com.project.telco.model.Client;
 import com.project.telco.repository.UserRepository;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,8 +24,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/api")
 //Maintain variable in the session
 @SessionAttributes("Client")
-@Configuration
-@ConfigurationProperties(prefix = "contr")
 
 public class ServiceController {
 
@@ -70,7 +69,8 @@ public class ServiceController {
 
    @RequestMapping(value = "/test", method=RequestMethod.GET)
    public void test() {
-       System.out.print("----------------- "+ string);
+        ConfigProperties configProperties = new ConfigProperties();
+        System.out.print("-----------+++------ "+configProperties.getTestData1());
     
    }
    
