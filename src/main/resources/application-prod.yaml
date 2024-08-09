@@ -5,7 +5,7 @@ spring:
       schema-locations: classpath:schema.sql
       data-locations: classpath:data.sql
   datasource:
-    url: jdbc:postgresql://localhost:5432/telco
+    url: jdbc:postgresql://localhost:5432/telcoprod
     username: telco
     password: 1234
     driver-class-name: org.postgresql.Driver
@@ -16,8 +16,3 @@ spring:
 
 props:
   testData1: testData1
-
-# spring:
-#   profiles:
-#     active:
-#     - prod

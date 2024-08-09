@@ -20,6 +20,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Data
+@Table
 //force to initialize final fields
 @NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
 //generate a constructor which final attributes and not null atrributes 
@@ -28,11 +29,11 @@ public class Client implements UserDetails{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long userId;
+    private long Id;
     private final String phonenumber;
+    private final String password;
     private final String name;
     private final int age;
-    private final String password;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -56,13 +57,11 @@ public class Client implements UserDetails{
     }
     @Override
     public String getPassword() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPassword'");
+        return this.password;
     }
     @Override
     public String getUsername() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getUsername'");
+        return this.name;
     }
    
 

@@ -3,6 +3,7 @@ package com.project.telco.controller;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,20 +17,22 @@ import com.project.telco.config.ConfigProperties;
 import com.project.telco.model.Client;
 import com.project.telco.repository.UserRepository;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 
 
 
-@Controller
-@RequestMapping("/api")
+@RestController
+@RequestMapping(path = "/api", produces = "application/json")
+@CrossOrigin(origins = "https://localhost:8080")
 //Maintain variable in the session
 @SessionAttributes("Client")
 
 public class ServiceController {
 
-    public String string;
+    private ConfigProperties configProperties;
     private UserRepository userRepository;
-    
+
     //make sure Client is in the session
     @ModelAttribute(name = "Client")
     public Client get() {
@@ -37,8 +40,9 @@ public class ServiceController {
         return newUser;
     }
 
-    public ServiceController(UserRepository userRepository){
+    public ServiceController(UserRepository userRepository, ConfigProperties configProperties){
         this.userRepository = userRepository;
+        this.configProperties = configProperties;
     }
 
    @RequestMapping(value="/users", method=RequestMethod.GET)
