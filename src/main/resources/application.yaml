@@ -12,10 +12,10 @@ spring:
   jpa:
     properties:
       hibernate:
+        ddl-auto: create
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
-props:
-  testData1: testData1
+
 
 # spring:
 #   profiles:
