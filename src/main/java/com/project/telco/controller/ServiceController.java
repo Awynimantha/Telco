@@ -1,12 +1,13 @@
 package com.project.telco.controller;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Optional;
+
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,17 +17,18 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.project.telco.config.ConfigProperties;
 import com.project.telco.model.Client;
 import com.project.telco.repository.UserRepository;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
 
 @RestController
 @RequestMapping(path = "/api", produces = "application/json")
-@CrossOrigin(origins = "https://localhost:8080")
+@CrossOrigin(origins = "http://localhost:8080")
 //Maintain variable in the session
-@SessionAttributes("Client")
+
 
 public class ServiceController {
 
@@ -46,13 +48,15 @@ public class ServiceController {
     }
 
    @RequestMapping(value="/users", method=RequestMethod.GET)
-   public Iterable<Client> getUsers(Model model) {
-       Iterable<Client> Client = userRepository.findAll();
-       //model.addAttribute("Client", Client);
-       System.out.println(model);
-        System.out.println(Client );
-        return Client;
+   public Iterable<Client> getUsers() {
+        return  userRepository.findAll();
    }
+
+   @RequestMapping(value = "/users/{id}", method=RequestMethod.GET)
+   public Optional<Client> requestMethodName(@PathVariable Long id) {
+       return userRepository.findById(id);
+   }
+   
 
    @RequestMapping(value  ="/addUser", method=RequestMethod.POST)
    public void setUser(@RequestBody Client Client, Errors errors, SessionStatus sessionStatus) {
@@ -61,9 +65,7 @@ public class ServiceController {
             System.out.println("failed");
         }
 
-        userRepository.save(Client);
-        sessionStatus.setComplete();
-   }
+        userRepository.save(Client);   }
    
    //Model is maintained throughout the session
    @RequestMapping(value = "/model", method=RequestMethod.GET)

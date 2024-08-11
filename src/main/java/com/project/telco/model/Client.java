@@ -33,8 +33,6 @@ public class Client implements UserDetails {
     public final int age;
     public final String password;  // Removed final modifier
     
-
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));

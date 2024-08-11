@@ -2,8 +2,6 @@ spring:
   sql:
     init:
       mode: always # This ensures the initialization scripts are always run on startup
-      schema-locations: classpath:schema.sql
-      data-locations: classpath:data.sql
   datasource:
     url: jdbc:postgresql://localhost:5432/telco
     username: telco
