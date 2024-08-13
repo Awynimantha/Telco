@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Optional;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +20,7 @@ import com.project.telco.model.Client;
 import com.project.telco.repository.UserRepository;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 
 
@@ -59,13 +61,12 @@ public class ServiceController {
    
 
    @RequestMapping(value  ="/addUser", method=RequestMethod.POST)
-   public void setUser(@RequestBody Client Client, Errors errors, SessionStatus sessionStatus) {
-        System.out.println(Client);
+   public Client setUser(@RequestBody Client Client, Errors errors) {
         if(errors.hasErrors()) {
             System.out.println("failed");
         }
 
-        userRepository.save(Client);   }
+        return userRepository.save(Client);   }
    
    //Model is maintained throughout the session
    @RequestMapping(value = "/model", method=RequestMethod.GET)

@@ -49,6 +49,14 @@ public class SecurityConfig {
         return http.build();
     }
 
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.csrf().disable(); // Disables CSRF protection
+        // Additional security configurations can go here
+
+        return http.build();
+    }
+
 
 
 }

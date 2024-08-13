@@ -3,6 +3,7 @@ package com.project.telco.config;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 
 import com.project.telco.model.Client;
 import com.project.telco.repository.UserRepository;
@@ -16,4 +17,6 @@ public class MainConfigs {
             userRepository.save(client);
         };
     }
+
+
 }
