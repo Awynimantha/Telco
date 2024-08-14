@@ -16,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 
 
 @Configuration
@@ -46,11 +47,12 @@ public class SecurityConfig  {
     @Bean
     public SecurityFilterChain web(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((authorize) -> authorize
-            .anyRequest().permitAll());
+            .anyRequest().permitAll()).csrf(AbstractHttpConfigurer::disable);;
             // ...
 
         return http.build();
     }
+
 
     // @Override
     // protected void configure(HttpSecurity http) throws Exception {
