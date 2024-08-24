@@ -1,6 +1,7 @@
 package com.project.telco.controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,7 +34,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @RequestMapping(path = "/api", produces = "application/json")
 @CrossOrigin(origins = "http://localhost:8080")
 //Maintain variable in the session
-
+@EnableMethodSecurity
 
 public class ServiceController {
 
@@ -61,6 +65,7 @@ public class ServiceController {
    
 
    @RequestMapping(value  ="/addUser", method=RequestMethod.POST)
+   @PreAuthorize("hasRole('ROLE_ADMIN')")
    public Client setUser(@RequestBody Client Client, Errors errors) {
         if(errors.hasErrors()) {
             System.out.println("failed");
@@ -79,6 +84,12 @@ public class ServiceController {
         ConfigProperties configProperties = new ConfigProperties();
         System.out.print("-----------+++------ "+configProperties.getTestData1());
     
+   }
+
+   @DeleteMapping("/{id}")
+   @ResponseStatus(HttpStatus.NO_CONTENT)
+   public void deleteUser(@PathVariable("id") long ingredientId) {
+    userRepository.deleteById(ingredientId);
    }
    
    

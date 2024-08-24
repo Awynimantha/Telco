@@ -10,7 +10,6 @@ import com.project.telco.config.ConfigProperties;
 
 
 @SpringBootApplication
-@EnableAutoConfiguration
 @EnableConfigurationProperties(ConfigProperties.class)
 public class TelcoApplication {
     public static void main(String[] args) {

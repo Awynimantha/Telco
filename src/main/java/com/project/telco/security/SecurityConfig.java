@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -20,7 +21,8 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 
 
 @Configuration
-public class SecurityConfig  {
+@EnableMethodSecurity
+public class SecurityConfig {
 
 
     @Bean
@@ -33,11 +35,11 @@ public class SecurityConfig  {
         List<UserDetails> usersList = new ArrayList<>();
         usersList.add(new User(
             "User1", encoder.encode("password"),
-            Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"))
+            Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"))
         ));
         usersList.add(new User(
             "newUser",  encoder.encode("newly"),
-            Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"))
+            Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"))
         ));
         
         
