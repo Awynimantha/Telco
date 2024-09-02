@@ -2,8 +2,6 @@ spring:
   sql:
     init:
       mode: always # This ensures the initialization scripts are always run on startup
-  security:
-    enable-csrf: false
   datasource:
     url: jdbc:postgresql://localhost:5432/telco
     username: telco
@@ -14,10 +12,15 @@ spring:
       hibernate:
         ddl-auto: create
         dialect: org.hibernate.dialect.PostgreSQLDialect
+  artemis:
+    broker-url: tcp://127.0.0.1:61616
+    user: admin
+    password: admin
+#   jms:
+#     template:
+#       default-destination: clientcloud.create.queue
 
-
-
-# spring:
+# # spring:
 #   profiles:
 #     active:
 #     - prod
