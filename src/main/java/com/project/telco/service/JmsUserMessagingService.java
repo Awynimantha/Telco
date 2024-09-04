@@ -31,4 +31,9 @@ public class JmsUserMessagingService implements UserMessagingService {
             }     
         });
     }
+
+    
+    public void sendClientObj(Client client) {
+        jms.convertAndSend(client);
+    }
 }

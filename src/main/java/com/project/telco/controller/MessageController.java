@@ -27,7 +27,7 @@ public class MessageController {
     @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public Client sendClient(Client client) {
-        jmsUserMessagingService.sendClient(client);
+        jmsUserMessagingService.sendClientObj(client);
         return client;
     }
         
