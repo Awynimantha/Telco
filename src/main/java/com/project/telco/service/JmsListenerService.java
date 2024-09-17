@@ -1,6 +1,5 @@
 package com.project.telco.service;
 
-import javax.sound.midi.SysexMessage;
 
 import org.springframework.context.annotation.Profile;
 import org.springframework.jms.annotation.JmsListener;
@@ -12,7 +11,7 @@ import com.project.telco.model.Client;
 @Component
 public class JmsListenerService {
     
-    @JmsListenerService(destination = "tacocloud.order.queuetwo")
+    @JmsListener(destination = "tacocloud.order.queuetwo")
     public void receiveOrder(Client client) {
         System.out.println(client);
     }

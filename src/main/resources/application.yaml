@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: jms-listener
   sql:
     init:
       mode: always # This ensures the initialization scripts are always run on startup

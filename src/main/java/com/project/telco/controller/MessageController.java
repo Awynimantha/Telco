@@ -3,6 +3,7 @@ package com.project.telco.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +19,6 @@ import com.project.telco.service.JmsUserMessagingService;
 public class MessageController {
     private UserRepository userRepository;
     private JmsUserMessagingService jmsUserMessagingService;
-
     public MessageController(UserRepository userRepository, JmsUserMessagingService jmsUserMessagingService) {
         this.userRepository = userRepository;
         this.jmsUserMessagingService = jmsUserMessagingService;
@@ -26,8 +26,9 @@ public class MessageController {
 
     @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public Client sendClient(Client client) {
+    public Client sendClient(@RequestBody Client client) {
         jmsUserMessagingService.sendClientObj(client);
+
         return client;
     }
         
